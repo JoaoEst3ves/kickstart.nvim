@@ -174,6 +174,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>y', ':<C-u>%y+<CR>', { desc = 'Copy whole file to clipboard' })
 -- Select whole file with <leader>a
 vim.keymap.set('n', '<leader>a', 'ggVG', { desc = 'Select whole file' })
+vim.keymap.set('n', '<leader>t', ':terminal<CR>i', { desc = '[T]erminal (Insert Mode)' })
 
 -- Diagnostic Config & Keymaps
 -- See :help vim.diagnostic.Opts
@@ -385,12 +386,23 @@ require('lazy').setup({
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
+        defaults = {
+          file_ignore_patterns = {
+            '%.venv/',
+            '__pycache__/',
+            '%.ruff_cache/',
+            'node_modules/',
+            '%.git/',
+          },
+          --   mappings = {
+          --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+          --   },
+        },
         pickers = {
+          find_files = {
+            hidden = true,
+            no_ignore = true,
+          },
           colorscheme = {
             enable_preview = true,
           },
@@ -408,7 +420,7 @@ require('lazy').setup({
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sf', function() require('telescope.builtin').find_files { hidden = true } end, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set({ 'n', 'v' }, '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
