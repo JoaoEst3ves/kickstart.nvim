@@ -2,11 +2,8 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
-<<<<<<< HEAD
-return {markdown}
-=======
 
 ---@module 'lazy'
 ---@type LazySpec
-return {}
->>>>>>> upstream/master
+
+return { markdown }

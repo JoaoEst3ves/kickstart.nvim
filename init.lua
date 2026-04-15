@@ -640,7 +640,7 @@ require('lazy').setup({
           settings = {
             pyright = {
               disableOrganizeImports = true, -- Let Ruff handle imports
-            },
+            },},
         stylua = {}, -- Used to format Lua code
 
         -- Special Lua Config, as recommended by neovim help docs
@@ -671,7 +671,7 @@ require('lazy').setup({
             Lua = {},
           },
         },
-      },
+      },}
 
       -- Disable Ruff's hover capability in favor of Pyright
       vim.api.nvim_create_autocmd('LspAttach', {
